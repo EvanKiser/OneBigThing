@@ -27,7 +27,7 @@ export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Header title="Evan" sections={[{title: 'Technology', url: '#' }]} />
+      <Header title="Evan" />
       <DateInfo />
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </React.Fragment>
