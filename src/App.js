@@ -5,8 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import ProTip from './ProTip';
-import Blog from './Blog/Blog';
-import Header from './Blog/Header';
+import Header from './Header';
 import Footer from './Footer';
 import DateInfo from './DateInfo';
 

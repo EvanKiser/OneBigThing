@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
                 Sign up
             </Button>
             </Toolbar>
+            
         </Container>
       </React.Fragment>
     );
