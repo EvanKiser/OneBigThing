@@ -48,7 +48,7 @@ const StaticDatePicker = () => {
 
 
   return (
-    <Grid container direction="row" alignItems="center" justify="space-evenly" spacing={0} >
+    <Grid container alignItems="center" justify="space-evenly" spacing={0} >
       <Grid item xs={3}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Calendar
