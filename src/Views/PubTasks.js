@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TaskList from './Views/TaskList';
-import Header from './Views/Header';
-import Footer from './Views/Footer';
-import DateComponent from './Views/DateComponent';
+import TaskList from './TaskList';
+import Header from './Header';
+import Footer from './Footer';
+import DateComponent from './DateComponent';
 
 
 
