@@ -33,7 +33,7 @@ class DateComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        calendarDate: props.calendarDate
+        calendarDate: new Date()
     };    
   }
 
@@ -42,30 +42,30 @@ class DateComponent extends Component {
     this.props.callbackToApp(this.state.calendarDate);
   }
 
-  callback = () => {
-    this.props.callbackToApp(this.state.calendarDate);
-  }
-
   render() {
     return (
-      <Grid container alignItems="center" justify="space-evenly" spacing={1} >
-        <Grid item xs={3}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Calendar
-                  date={this.state.calendarDate}
-                  onChange={(newDate) => this.changeDate(newDate)}
-              />
-          </MuiPickersUtilsProvider>
+      <Grid container justify="space-evenly">
+            <Grid item xs={12} md={9}>
+                <Grid container alignItems="center" justify="space-evenly" spacing={4}>
+                  <Grid item xs={9} md={3}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <Calendar
+                        date={this.state.calendarDate}
+                        onChange={(newDate) => this.changeDate(newDate)}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </Grid>
+                  <Grid item xs={9} md={3}>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                      {daysOfWeek[this.state.calendarDate.getDay()] + ', '}
+                    </Typography>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                      {monthsOfYear[this.state.calendarDate.getMonth()] + ' ' + this.state.calendarDate.getDate() + ', ' + this.state.calendarDate.getFullYear()}
+                    </Typography>
+                  </Grid>
+                </Grid>
+            </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            {daysOfWeek[this.state.calendarDate.getDay()] + ', '}
-          </Typography>
-          <Typography variant="h4" component="h1" gutterBottom>
-            {monthsOfYear[this.state.calendarDate.getMonth()] + ' ' + this.state.calendarDate.getDate() + ', ' + this.state.calendarDate.getFullYear()}
-          </Typography>
-        </Grid>
-      </Grid>
     );
   }
 }
