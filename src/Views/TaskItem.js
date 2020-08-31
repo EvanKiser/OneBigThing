@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography, Grid, Paper } from '@material-ui/core/';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles({
     root: {
@@ -29,24 +30,18 @@ const useStyles = makeStyles({
 });
 
 export default function TaskItem(props) {
+    const [task]= useState(props.task);
     const classes = useStyles();
-    const itemId = props;
-    const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Grid item key={itemId}>
+    <Grid item >
         <Paper>
             <Card className={classes.root}>
                 <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Word of the Day
-                    </Typography>
                     <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                    {task.taskTitle}
                     </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                    adjective
-                    </Typography>
+                    <AccountBalanceWalletIcon />
                     <Typography variant="body2" component="p">
                     well meaning and kindly.
                     <br />

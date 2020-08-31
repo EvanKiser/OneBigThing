@@ -1,7 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { makeStyles} from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import TaskItem from './TaskItem';
+//import Task from '../Models/Task';
 
 const useStyles = makeStyles({
     root: {
@@ -14,7 +15,8 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TaskList() {
+export default function TaskList(props) {
+  const [ taskList ] = useState(props.tasks);
   const classes = useStyles();
 
   return (
@@ -22,8 +24,8 @@ export default function TaskList() {
         <Grid container justify="space-evenly">
             <Grid item xs={9}>
                 <Grid container alignItems="center" justify="space-evenly" spacing={4}>
-                    {[0,1,2,3,4,5,6,7,8,9].map(id => 
-                        <TaskItem itemId={id} />
+                    { taskList.map(task => 
+                        <TaskItem key={0} task={task} />
                     )}
                 </Grid>
             </Grid>
