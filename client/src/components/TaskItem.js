@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import { Typography, Grid, Paper } from '@material-ui/core/';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import React, { useState } from './node_modules/react';
+import { makeStyles } from './node_modules/@material-ui/core/styles';
+import Card from './node_modules/@material-ui/core/Card';
+import CardActions from './node_modules/@material-ui/core/CardActions';
+import CardContent from './node_modules/@material-ui/core/CardContent';
+import Button from './node_modules/@material-ui/core/Button';
+import { Typography, Grid, Paper } from './node_modules/@material-ui/core/';
+import AccountBalanceWalletIcon from './node_modules/@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles({
     root: {
@@ -41,7 +41,7 @@ export default function TaskItem(props) {
                     <Typography variant="h5" component="h2">
                     {task.taskTitle}
                     </Typography>
-                    <AccountBalanceWalletIcon />
+                    < AccountBalanceWalletIcon/>
                     <Typography variant="body2" component="p">
                     well meaning and kindly.
                     <br />

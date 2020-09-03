@@ -1,10 +1,10 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Container } from '@material-ui/core';
+import * as React from './node_modules/react';
+import PropTypes from './node_modules/prop-types';
+import { makeStyles } from './node_modules/@material-ui/core/styles';
+import Toolbar from './node_modules/@material-ui/core/Toolbar';
+import Button from './node_modules/@material-ui/core/Button';
+import Typography from './node_modules/@material-ui/core/Typography';
+import { Container } from './node_modules/@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {

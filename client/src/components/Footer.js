@@ -1,9 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import * as React from './node_modules/react';
+import PropTypes from './node_modules/prop-types';
+import { makeStyles } from './node_modules/@material-ui/core/styles';
+import Container from './node_modules/@material-ui/core/Container';
+import Typography from './node_modules/@material-ui/core/Typography';
+import Link from './node_modules/@material-ui/core/Link';
 
 function Copyright() {
   return (
