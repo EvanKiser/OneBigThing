@@ -1,6 +1,6 @@
-import React, { useState } from './node_modules/react';
-import { makeStyles} from './node_modules/@material-ui/core/styles';
-import { Grid } from './node_modules/@material-ui/core/';
+import React, { useState } from 'react';
+import { makeStyles} from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 import TaskItem from './TaskItem';
 //import Task from '../Models/Task';
 
