@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Calendar, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Typography, Grid } from "@material-ui/core";
-import DateFnsUtils from '@date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns'
 
 const daysOfWeek = {
   0: "Sunday",
