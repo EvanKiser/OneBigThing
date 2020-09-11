@@ -3,10 +3,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Container } from '@material-ui/core';
-import PopUp from './CreateTaskPopUp';
 import '../css/header.css';
 
-export default class Header2 extends Component {
+export default class Header extends Component {
 
     constructor(props) {
         super(props);
@@ -15,11 +14,9 @@ export default class Header2 extends Component {
             popUpOpen: false,
         };    
     }
-    
+
     togglePop = () => {
-        this.setState({
-            popUpOpen: !this.state.popUpOpen
-        });
+      this.props.callbackToPopUp(true);
     }
 
     render() {
@@ -40,7 +37,6 @@ export default class Header2 extends Component {
             <Button variant="outlined" size="small" onClick={this.togglePop}>
                 New Task
             </Button>
-            {this.state.popUpOpen ? <PopUp toggle={this.togglePop} /> : null}
             </Toolbar>
             
         </Container>

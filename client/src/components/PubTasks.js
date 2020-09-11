@@ -11,10 +11,21 @@ class App extends Component {
   state = {
       date: new Date(),
       tasks: [],
+      popUpOpen: false,
   }
 
   callbackForDate = (calendarDate) => {
     this.setState({ date: calendarDate });
+  }
+
+  callbackForPopUp = () => {
+    this.setState({ popUpOpen: !this.state.popUpOpen });
+  }
+
+  togglePop = () => {
+    this.setState({
+      popUpOpen: !this.state.popUpOpen
+    });
   }
 
   tasksByDate = () => {
@@ -26,13 +37,12 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <div>
           <CssBaseline />
-          <Header title="Evan" />
+          <Header title="Evan" callbackToPopUp={this.callbackForPopUp}/>
+          {this.state.popUpOpen ? <PopUp toggle={this.togglePop} /> : null}
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate(this.state.date)}/>
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>
-        </div>
       </React.Fragment>
     );
   }
