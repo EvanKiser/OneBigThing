@@ -4,14 +4,13 @@ import TaskList from './TaskList';
 import Header from './Header';
 import Footer from './Footer';
 import DateComponent from './DateComponent';
-import Task from '../Models/Task';
+import PopUp from './CreateTaskPopUp';
 
 
 class App extends Component {
   state = {
       date: new Date(),
-      tasks: [new Task("Evan's tasks"),
-              new Task("Not Evan's Task")],
+      tasks: [],
   }
 
   callbackForDate = (calendarDate) => {
@@ -27,11 +26,13 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Header title="Evan" />
-        <DateComponent callbackToApp={this.callbackForDate}/>
-        <TaskList tasks={this.tasksByDate(this.state.date)}/>
-        <Footer title="Footer" description="Something here to give the footer a purpose!"/>
+        <div>
+          <CssBaseline />
+          <Header title="Evan" />
+          <DateComponent callbackToApp={this.callbackForDate}/>
+          <TaskList tasks={this.tasksByDate(this.state.date)}/>
+          <Footer title="Footer" description="Something here to give the footer a purpose!"/>
+        </div>
       </React.Fragment>
     );
   }
