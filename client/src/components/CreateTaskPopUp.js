@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../css/createTaskPopUp.css'
+
 export default class CreateTaskPopUp extends Component {
   handleClick = () => {
    this.props.toggle();

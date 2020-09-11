@@ -11,19 +11,22 @@ export default class Header extends Component {
         super(props);
         this.state = {
             title: props.title,
-            popUpOpen: false,
         };    
     }
 
-    togglePop = () => {
-      this.props.callbackToPopUp(true);
+    toggleTaskPop = () => {
+      this.props.callbackToTaskPopUp(true);
     }
+
+    toggleSignInPop = () => {
+        this.props.callbackToSignInPopUp(true);
+      }
 
     render() {
         return (
             <Container maxWidth="lg">
             <Toolbar className="toolbar">
-            <Button size="small">Subscribe</Button>
+            <Button size="small" onClick={this.toggleSignInPop}>Log In</Button>
             <Typography
                 component="h2"
                 variant="h5"
@@ -34,7 +37,7 @@ export default class Header extends Component {
             >
                 {this.state.title}
             </Typography>
-            <Button variant="outlined" size="small" onClick={this.togglePop}>
+            <Button size="small" onClick={this.toggleTaskPop}>
                 New Task
             </Button>
             </Toolbar>

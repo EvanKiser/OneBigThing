@@ -5,27 +5,39 @@ import Header from './Header';
 import Footer from './Footer';
 import DateComponent from './DateComponent';
 import PopUp from './CreateTaskPopUp';
+import SignIn from './SignIn';
 
 
 class App extends Component {
   state = {
       date: new Date(),
       tasks: [],
-      popUpOpen: false,
+      taskPopUpOpen: false,
+      signInPopUpOpen: false,
   }
 
   callbackForDate = (calendarDate) => {
     this.setState({ date: calendarDate });
   }
 
-  callbackForPopUp = () => {
-    this.setState({ popUpOpen: !this.state.popUpOpen });
+  callbackForTaskPopUp = () => {
+    this.setState({ taskPopUpOpen: !this.state.taskPopUpOpen });
   }
 
-  togglePop = () => {
+  callbackForSignInPopUp = () => {
+    this.setState({ signInPopUpOpen: !this.state.signInPopUpOpen });
+  }
+
+  toggleTaskPop = () => {
     this.setState({
-      popUpOpen: !this.state.popUpOpen
+      taskPopUpOpen: !this.state.taskPopUpOpen
     });
+  }
+
+  toggleSignInPop = () => {
+    this.setState({
+      signInPopUpOpen: !this.state.signInPopUpOpen
+    })
   }
 
   tasksByDate = () => {
@@ -38,8 +50,9 @@ class App extends Component {
     return (
       <React.Fragment>
           <CssBaseline />
-          <Header title="Evan" callbackToPopUp={this.callbackForPopUp}/>
-          {this.state.popUpOpen ? <PopUp toggle={this.togglePop} /> : null}
+          <Header title="Evan" callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp}/>
+          {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null}
+          {this.state.signInPopUpOpen ? <SignIn toggle={this.toggleSignInPop} /> : null}
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate(this.state.date)}/>
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>
