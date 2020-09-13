@@ -33,6 +33,29 @@ class App extends Component {
   checkUserInDB = (user) => {
     console.log('checkuserindb')
     console.log(user)
+    axios.get('http://localhost:5000/auth/google/', {
+      params: {
+        googleId: user.googleId
+      }
+    })
+    .then(response => {
+      if (response.status === 200) {
+        console.log('user foudn')
+        this.setState({ user: {
+          firstName: response.data.firstName,
+          name: response.data.name,
+          image: response.data.imageUrl,
+        }})
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      this.createUser(user)
+    })
+  }
+    
+
+  createUser = (user) => {
     axios.post('http://localhost:5000/auth/google/', {
       googleId: user.googleId,
       lastName: user.lastName,
@@ -42,16 +65,13 @@ class App extends Component {
       image: user.image
     })
       .then(response => {
-        console.log('neednewword')
-        console.log(response)
         this.setState({ user: {
           firstName: response.data.firstName,
           name: response.data.name,
           image: response.data.imageUrl,
         }
       })
-      //console.log(this.state.user)
-   })
+      })
       .catch( error => { console.log(error)})
   }
 

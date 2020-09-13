@@ -8,7 +8,7 @@
 - Amazon Login
 - Facebook Login
 - Twitter Login
-- Google Login
 - X button for log in pop up
 - Name on top
 - log out
+- Delete Task

@@ -6,14 +6,10 @@ const router = express.Router()
 // @desc Auth with Google
 // @route GET /auth/google
 router.get('/google/', async (req, res) => {
-    console.log(req.query)
-    console.log('y')
     const user = User.findOne( {googleId: req.query.googleId})
     .exec()
     .then(user => {
         if (user) {
-            console.log('z')
-            console.log(user)
             res.status(200).json(user)
         } else {
             res.status(401).send('User not found')
@@ -25,9 +21,6 @@ router.get('/google/', async (req, res) => {
 })
 
 router.post('/google/', async (req, res) => {
-    console.log('n')
-    console.log(req.body)
-    console.log('y')
     await User.create(req.body)
     .then(result => {    
         console.log(result)
@@ -36,7 +29,7 @@ router.post('/google/', async (req, res) => {
             createdProduct: result
         })
     })
-    .catch(error => res.status())
+    .catch(err => res.status(400).json({ error: err }))
 })
 
 module.exports = router
