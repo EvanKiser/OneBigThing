@@ -6,11 +6,13 @@ import Footer from './Footer';
 import DateComponent from './DateComponent';
 import PopUp from './CreateTaskPopUp';
 import SignIn from './SignIn';
+import axios from 'axios';
 
 
 class App extends Component {
   state = {
       date: new Date(),
+      user: null,
       tasks: [],
       taskPopUpOpen: false,
       signInPopUpOpen: false,
@@ -26,6 +28,26 @@ class App extends Component {
 
   callbackForSignInPopUp = () => {
     this.setState({ signInPopUpOpen: !this.state.signInPopUpOpen });
+  }
+
+  checkUserInDB = (user) => {
+    axios.get('http://localhost:5000/auth/google/', {
+      params: {
+        ID: user.googleId
+      }
+    })
+      .then(response => {
+        console.log('neednewword')
+        console.log(response)
+        this.setState({ user: {
+          firstName: response.data.firstName,
+          name: response.data.name,
+          image: response.data.imageUrl,
+        }
+      })
+      console.log(this.state.user)
+   })
+      .catch( error => { console.log(error)})
   }
 
   toggleTaskPop = () => {
@@ -51,8 +73,8 @@ class App extends Component {
       <React.Fragment>
           <CssBaseline />
           <Header title="Evan" callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp}/>
-          {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null}
-          {this.state.signInPopUpOpen ? <SignIn toggle={this.toggleSignInPop} /> : null}
+          {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null }
+          {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate(this.state.date)}/>
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>

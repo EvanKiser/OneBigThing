@@ -1,20 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-  TwitterLoginButton,
-  AmazonLoginButton,
-} from "react-social-login-buttons";
-
-const config = {
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  }
-};
+import GoogleLogin from 'react-google-login';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,27 +10,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
-  const logInWithGoogle = () => {
-    axios.get('http://localhost:5000/auth/google', config)
-      .then( (response) => { console.log(response); console.log('response') })
-      .catch( (error) => { 
-        console.log(error);
-        console.log('dick')
-      })
+  const logInWithGoogle = (response) => {
+    const user = {
+      googleId: response.profileObj.googleId,
+      lastName: response.profileObj.familyName,
+      firstName: response.profileObj.givenName,
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      image: response.profileObj.imageUrl
+    };
+    props.userInDB(user);
   }
 
   return (
     <div className="modal">
       <div className="modal_content">
           <div className={classes.paper}>
-              <GoogleLoginButton onClick={logInWithGoogle} />
-              <FacebookLoginButton />
-              <TwitterLoginButton />
-              <AmazonLoginButton />
+            <GoogleLogin
+              clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
+              buttonText="Login With Google"
+              onSuccess={logInWithGoogle}
+              onFailure={console.log('dick2')}
+              cookiePolicy={'single_host_origin'}
+            />,
           </div>
       </div>
     </div>
