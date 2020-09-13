@@ -27,13 +27,13 @@ if (process.env.NODE_ENV === 'development') {
 
 // Sessions middlware
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'SECRET',
     resave: false,
     saveUninitialized: false
 }))
 
 // Cors
-// app.use(cors())
+app.use(cors())
 
 // Passport middleware
 app.use(passport.initialize())

@@ -9,6 +9,13 @@ import {
   AmazonLoginButton,
 } from "react-social-login-buttons";
 
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  }
+};
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
@@ -22,7 +29,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   const logInWithGoogle = () => {
-    axios.get('http://localhost:5000/auth/google')
+    axios.get('http://localhost:5000/auth/google', config)
       .then( (response) => { console.log(response); console.log('response') })
       .catch( (error) => { 
         console.log(error);
