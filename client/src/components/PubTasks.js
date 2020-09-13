@@ -79,7 +79,7 @@ class App extends Component {
           <CssBaseline />
           <Header title="Evan" callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp}/>
           {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null }
-          {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} /> : null }
+          {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate(this.state.date)}/>
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>

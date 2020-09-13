@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import GoogleLogin from 'react-google-login';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +22,8 @@ export default function SignIn(props) {
       email: response.profileObj.email,
       image: response.profileObj.imageUrl,
     };
-    console.log(user)
+    props.toggle();
+    console.log(user);
     props.userInDB(user);
   }
 
