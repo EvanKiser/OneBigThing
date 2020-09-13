@@ -31,10 +31,15 @@ class App extends Component {
   }
 
   checkUserInDB = (user) => {
-    axios.get('http://localhost:5000/auth/google/', {
-      params: {
-        ID: user.googleId
-      }
+    console.log('checkuserindb')
+    console.log(user)
+    axios.post('http://localhost:5000/auth/google/', {
+      googleId: user.googleId,
+      lastName: user.lastName,
+      firstName: user.firstName,
+      displayName: user.name,
+      email: user.email,
+      image: user.image
     })
       .then(response => {
         console.log('neednewword')
@@ -45,7 +50,7 @@ class App extends Component {
           image: response.data.imageUrl,
         }
       })
-      console.log(this.state.user)
+      //console.log(this.state.user)
    })
       .catch( error => { console.log(error)})
   }

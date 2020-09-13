@@ -20,8 +20,9 @@ export default function SignIn(props) {
       firstName: response.profileObj.givenName,
       name: response.profileObj.name,
       email: response.profileObj.email,
-      image: response.profileObj.imageUrl
+      image: response.profileObj.imageUrl,
     };
+    console.log(user)
     props.userInDB(user);
   }
 
