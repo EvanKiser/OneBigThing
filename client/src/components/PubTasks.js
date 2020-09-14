@@ -11,7 +11,11 @@ import axios from 'axios';
 class App extends Component {
   state = {
       date: new Date(),
-      user: null,
+      user: {
+        firstName: "",
+        name: "dillhole",
+        image: "www.image.com",
+      },
       tasks: [],
       taskPopUpOpen: false,
       signInPopUpOpen: false,
@@ -26,12 +30,30 @@ class App extends Component {
   }
 
   callbackForSignInPopUp = () => {
-    this.setState({ signInPopUpOpen: !this.state.signInPopUpOpen });
+    if (this.state.user.firstName !== "") {
+      this.setState({
+        user: {
+          firstName: "",
+          name: "",
+          image: "",
+        }
+      });
+    } else {
+      this.setState({ signInPopUpOpen: !this.state.signInPopUpOpen });
+    }
+  }
+
+  callbackForLogOut = () => {
+    this.setState({
+      user: {
+        firstName: "",
+        name: "",
+        image: "",
+      }
+    });
   }
 
   checkUserInDB = (user) => {
-    console.log('checkuserindb')
-    console.log(user)
     axios.get('http://localhost:5000/auth/google/', {
       params: {
         googleId: user.googleId
@@ -39,17 +61,19 @@ class App extends Component {
     })
     .then(response => {
       if (response.status === 200) {
-        console.log('user foudn')
-        this.setState({ user: {
-          firstName: response.data.firstName,
-          name: response.data.name,
-          image: response.data.imageUrl,
-        }})
+        if (response.data === 'User Not Found') {
+           this.createUser(user)
+        } else {
+          this.setState({ user: {
+            firstName: response.data.firstName,
+            name: response.data.displayName,
+            image: response.data.image,
+          }});
+        }
       }
     })
     .catch(err => {
       console.log(err)
-      this.createUser(user)
     })
   }
   
@@ -62,15 +86,15 @@ class App extends Component {
       email: user.email,
       image: user.image
     })
-      .then(response => {
-        this.setState({ user: {
-          firstName: response.data.firstName,
-          name: response.data.name,
-          image: response.data.imageUrl,
-        }
-      })
-      })
-      .catch( error => { console.log(error)})
+    .then(response => {
+      this.setState({ user: {
+        firstName: response.data.firstName,
+        name: response.data.displayName,
+        image: response.data.image,
+      }
+    });
+    })
+    .catch( error => { console.log(error) })
   }
 
 
@@ -92,11 +116,10 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <React.Fragment>
           <CssBaseline />
-          <Header title="Evan" callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp}/>
+          <Header title={this.state.user.firstName} callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp} logout={this.callbackForLogOut}/>
           {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>

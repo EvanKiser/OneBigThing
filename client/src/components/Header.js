@@ -14,19 +14,60 @@ export default class Header extends Component {
         };    
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            this.setState( (state, props) => ({
+                title: props.title 
+            }));
+        }
+    }
+            
     toggleTaskPop = () => {
       this.props.callbackToTaskPopUp(true);
     }
 
     toggleSignInPop = () => {
+        if (this.state.title === "") {
+            this.setState({
+                title: "",
+            })
+        }
         this.props.callbackToSignInPopUp(true);
-      }
+    }
+
+    isLoggedIn = () => {
+        if (this.state.title === "") {
+            return "Log In";
+        }
+        else {
+            return "Log out";
+        }
+    }
+
+    titleLettering = () => {
+        if (this.state.title !== "") {
+            return `${this.state.title}'s PubTasks`;
+        } else {
+            return "PubTasks";
+        }
+    }
+
+    newTaskButton = () => {
+        if (this.state.title !== "") {
+            return true;
+        }
+        return false;
+    }
 
     render() {
+        console.log(this.state.title)
         return (
+            <React.Fragment>
             <Container maxWidth="lg">
             <Toolbar className="toolbar">
-            <Button size="small" onClick={this.toggleSignInPop}>Log In</Button>
+            <Button size="small" onClick={this.toggleSignInPop}>
+                {this.isLoggedIn()}
+            </Button>
             <Typography
                 component="h2"
                 variant="h5"
@@ -35,14 +76,13 @@ export default class Header extends Component {
                 noWrap
                 className="toolbarTitle"
             >
-                {this.state.title}
+                {this.titleLettering()}
             </Typography>
-            <Button size="small" onClick={this.toggleTaskPop}>
-                New Task
-            </Button>
+            {this.newTaskButton() ? <Button size="small" onClick={this.toggleTaskPop}> New Task </Button> : null }
             </Toolbar>
             
         </Container>
+        </React.Fragment>
         );
     }
 }
