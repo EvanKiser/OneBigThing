@@ -8,7 +8,6 @@ import PopUp from './CreateTaskPopUp';
 import SignIn from './SignIn';
 import axios from 'axios';
 
-
 class App extends Component {
   state = {
       date: new Date(),
@@ -53,8 +52,7 @@ class App extends Component {
       this.createUser(user)
     })
   }
-    
-
+  
   createUser = (user) => {
     axios.post('http://localhost:5000/auth/google/', {
       googleId: user.googleId,
@@ -74,6 +72,7 @@ class App extends Component {
       })
       .catch( error => { console.log(error)})
   }
+
 
   toggleTaskPop = () => {
     this.setState({

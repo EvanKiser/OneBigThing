@@ -14,6 +14,7 @@ export default function SignIn(props) {
   const classes = useStyles();
 
   const logInWithGoogle = (response) => {
+    props.toggle();
     const user = {
       googleId: response.profileObj.googleId,
       lastName: response.profileObj.familyName,
@@ -22,8 +23,6 @@ export default function SignIn(props) {
       email: response.profileObj.email,
       image: response.profileObj.imageUrl,
     };
-    props.toggle();
-    console.log(user);
     props.userInDB(user);
   }
 
@@ -35,7 +34,7 @@ export default function SignIn(props) {
               clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
               buttonText="Login With Google"
               onSuccess={logInWithGoogle}
-              onFailure={console.log('dick2')}
+              onFailure={console.log('onFailure')}
               cookiePolicy={'single_host_origin'}
             />,
           </div>
