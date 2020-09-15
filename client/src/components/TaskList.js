@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 export default function TaskList(props) {
-  const [ taskList ] = useState(props.tasks);
+  console.log(props.tasks);
   const classes = useStyles();
 
   return (
@@ -24,10 +24,9 @@ export default function TaskList(props) {
         <Grid container justify="space-evenly">
             <Grid item xs={9}>
                 <Grid container alignItems="center" justify="space-evenly" spacing={4}>
-                    {// taskList.map( (task, index) => 
-                      //  <TaskItem key={index} task={task} />
-                    //)
-                }
+                    {props.tasks.map( (task, index) => 
+                        <TaskItem key={index} task={task} />
+                    )}
                 </Grid>
             </Grid>
         </Grid>

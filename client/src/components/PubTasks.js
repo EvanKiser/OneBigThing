@@ -7,7 +7,6 @@ import DateComponent from './DateComponent';
 import PopUp from './CreateTaskPopUp';
 import SignIn from './SignIn';
 import axios from 'axios';
-import datefns from 'date-fns';
 
 class App extends Component {
   constructor(props) {
@@ -36,11 +35,7 @@ class App extends Component {
   }
 
   callbackToCreateNewTask = (newTask) => {
-    console.log('All Tasks at Start ');
-    console.log(this.state.tasks);
     this.postTask(newTask);
-    console.log('All tasks after posting one');
-    console.log(this.state.tasks);
   }
 
   callbackForSignInPopUp = () => {
@@ -118,18 +113,20 @@ class App extends Component {
   getAllTasks = async () => {
     await axios.get('http://localhost:5000/task/AllTasks/')
     .then(response => {
-      this.setState({
-        tasks: response.data
-      });
+      let tasks = response.data;
+      tasks.forEach(t => t.date = new Date(t.date))
+      this.setState({ 
+        tasks: tasks
+      })
     })
     .catch(err => {
       console.log(err)
     })
   }
 
-  postTask = (taskTitle) => {
+  postTask = async (taskTitle) => {
     console.log(this.state.user);
-    axios.post('http://localhost:5000/task/', {
+    await axios.post('http://localhost:5000/task/', {
       taskTitle: taskTitle,
       completed: false,
       date: new Date(),
@@ -140,10 +137,9 @@ class App extends Component {
       this.state.tasks.push({
         taskTitle: response.data.taskTitle,
         completed: response.data.completed,
-        date: response.data.date,
+        date: new Date(response.data.date),
         user: response.data.user,
       });
-      console.log(this.state.tasks);
     })
     .catch( error => { console.log(error) })
   }
@@ -161,9 +157,11 @@ class App extends Component {
     })
   }
 
-  tasksByDate = (tasks) => {
-    // let list = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
-    // return list;
+  tasksByDate = () => {
+    console.log('tasks by date');
+    console.log(this.state.tasks);
+    const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
+    return tasksByDate;
   }
 
   render() {
@@ -184,8 +182,7 @@ class App extends Component {
           }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
-          {//<TaskList tasks={this.tasksByDate(this.state.date)}/>}
-          <TaskList />}
+          <TaskList tasks={this.tasksByDate()}/>
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>
       </React.Fragment>
     );

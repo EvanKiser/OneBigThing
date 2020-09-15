@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateTaskPopUp(props) {
   const classes = useStyles();
-  const taskTitle = "";
   const handleClick = () => {
    props.toggle();
   };
