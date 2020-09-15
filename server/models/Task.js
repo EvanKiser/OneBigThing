@@ -18,6 +18,10 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userImage: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

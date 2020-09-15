@@ -2,8 +2,6 @@ import React from "react";
 import '../css/createTaskPopUp.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +28,7 @@ export default function CreateTaskPopUp(props) {
   const classes = useStyles();
 
   const handleClick = () => {
-   this.props.toggle();
+   props.toggle();
   };
 
   return (
@@ -52,7 +50,6 @@ export default function CreateTaskPopUp(props) {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
