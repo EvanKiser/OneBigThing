@@ -23,7 +23,7 @@ export default class Header extends Component {
     }
             
     toggleTaskPop = () => {
-      this.props.callbackToTaskPopUp(true);
+      this.props.callbackToTaskPopUp();
     }
 
     toggleSignInPop = () => {
@@ -60,7 +60,6 @@ export default class Header extends Component {
     }
 
     render() {
-        console.log(this.state.title)
         return (
             <React.Fragment>
             <Container maxWidth="lg">

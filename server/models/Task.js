@@ -12,7 +12,7 @@ const TaskSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
+        default: Date.now
     },
     user: {
         type: String,
@@ -22,10 +22,6 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
 })
 
 module.exports = mongoose.model('Task', TaskSchema)

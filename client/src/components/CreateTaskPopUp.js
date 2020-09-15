@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -26,10 +26,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateTaskPopUp(props) {
   const classes = useStyles();
-
+  const taskTitle = "";
   const handleClick = () => {
    props.toggle();
   };
+
+  const onSubmit = () => {
+    if (document.getElementById("taskTitle").value !== "") {
+      let newTaskTitle = document.getElementById("taskTitle").value;
+      props.callbackToNewTask(newTaskTitle);
+      props.toggle()
+    } else {
+      console.log('nothing entered');
+    }
+  }
 
   return (
     <div className="modal">
@@ -37,7 +47,7 @@ export default function CreateTaskPopUp(props) {
       <span className="close" onClick={handleClick}>
         &times;
       </span>
-      <form className={classes.form} noValidate>
+      <form className={classes.form}>
           What are you trying to complete today?
           <TextField
             variant="outlined"
@@ -49,10 +59,11 @@ export default function CreateTaskPopUp(props) {
             autoFocus
           />
           <Button
-            type="submit"
+            type="button"
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={onSubmit}
           >
             Submit
           </Button>

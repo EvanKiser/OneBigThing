@@ -24,9 +24,10 @@ export default function TaskList(props) {
         <Grid container justify="space-evenly">
             <Grid item xs={9}>
                 <Grid container alignItems="center" justify="space-evenly" spacing={4}>
-                    { taskList.map( (task, index) => 
-                        <TaskItem key={index} task={task} />
-                    )}
+                    {// taskList.map( (task, index) => 
+                      //  <TaskItem key={index} task={task} />
+                    //)
+                }
                 </Grid>
             </Grid>
         </Grid>

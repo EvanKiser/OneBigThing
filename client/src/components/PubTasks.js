@@ -7,18 +7,24 @@ import DateComponent from './DateComponent';
 import PopUp from './CreateTaskPopUp';
 import SignIn from './SignIn';
 import axios from 'axios';
+import datefns from 'date-fns';
 
 class App extends Component {
-  state = {
+  constructor(props) {
+    super();
+    this.state = {
       date: new Date(),
       user: {
+        googleId: "",
         firstName: "",
-        name: "dillhole",
-        image: "www.image.com",
+        name: "",
+        image: "",
       },
       tasks: [],
       taskPopUpOpen: false,
       signInPopUpOpen: false,
+    };
+    this.getAllTasks();
   }
 
   callbackForDate = (calendarDate) => {
@@ -29,11 +35,20 @@ class App extends Component {
     this.setState({ taskPopUpOpen: !this.state.taskPopUpOpen });
   }
 
+  callbackToCreateNewTask = (newTask) => {
+    console.log('All Tasks at Start ');
+    console.log(this.state.tasks);
+    this.postTask(newTask);
+    console.log('All tasks after posting one');
+    console.log(this.state.tasks);
+  }
+
   callbackForSignInPopUp = () => {
     if (this.state.user.firstName !== "") {
       this.setState({
         user: {
           firstName: "",
+          googleId: "",
           name: "",
           image: "",
         }
@@ -46,6 +61,7 @@ class App extends Component {
   callbackForLogOut = () => {
     this.setState({
       user: {
+        googleId: "",
         firstName: "",
         name: "",
         image: "",
@@ -65,6 +81,7 @@ class App extends Component {
            this.createUser(user)
         } else {
           this.setState({ user: {
+            googleId: response.data.googleId,
             firstName: response.data.firstName,
             name: response.data.displayName,
             image: response.data.image,
@@ -88,11 +105,45 @@ class App extends Component {
     })
     .then(response => {
       this.setState({ user: {
+        googleId: response.data.googleId,
         firstName: response.data.firstName,
         name: response.data.displayName,
         image: response.data.image,
       }
     });
+    })
+    .catch( error => { console.log(error) })
+  }
+
+  getAllTasks = async () => {
+    await axios.get('http://localhost:5000/task/AllTasks/')
+    .then(response => {
+      this.setState({
+        tasks: response.data
+      });
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  postTask = (taskTitle) => {
+    console.log(this.state.user);
+    axios.post('http://localhost:5000/task/', {
+      taskTitle: taskTitle,
+      completed: false,
+      date: new Date(),
+      user: this.state.user.googleId,
+      image: this.state.user.image
+    })
+    .then(response => {
+      this.state.tasks.push({
+        taskTitle: response.data.taskTitle,
+        completed: response.data.completed,
+        date: response.data.date,
+        user: response.data.user,
+      });
+      console.log(this.state.tasks);
     })
     .catch( error => { console.log(error) })
   }
@@ -110,20 +161,31 @@ class App extends Component {
     })
   }
 
-  tasksByDate = () => {
-    let list = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
-    return list;
+  tasksByDate = (tasks) => {
+    // let list = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
+    // return list;
   }
 
   render() {
     return (
       <React.Fragment>
           <CssBaseline />
-          <Header title={this.state.user.firstName} callbackToTaskPopUp={this.callbackForTaskPopUp} callbackToSignInPopUp={this.callbackForSignInPopUp} logout={this.callbackForLogOut}/>
-          {this.state.taskPopUpOpen ? <PopUp toggle={this.toggleTaskPop} /> : null }
+          <Header 
+            title={this.state.user.firstName} 
+            callbackToTaskPopUp={this.callbackForTaskPopUp} 
+            callbackToSignInPopUp={this.callbackForSignInPopUp} 
+            logout={this.callbackForLogOut}
+            />
+          {this.state.taskPopUpOpen ? 
+            <PopUp 
+              toggle={this.toggleTaskPop}
+              callbackToNewTask={this.callbackToCreateNewTask} 
+              /> : null 
+          }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
-          <TaskList tasks={this.tasksByDate(this.state.date)}/>
+          {//<TaskList tasks={this.tasksByDate(this.state.date)}/>}
+          <TaskList />}
           <Footer title="Footer" description="Something here to give the footer a purpose!"/>
       </React.Fragment>
     );

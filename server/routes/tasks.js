@@ -11,7 +11,7 @@ router.get('/allTasks/', async (req, res) => {
         if (tasks) {
             res.status(200).json(tasks)
         } else {
-            res.send("User Not Found");
+            res.send("Not Tasks Found");
         }
     })
     .catch(err => {
