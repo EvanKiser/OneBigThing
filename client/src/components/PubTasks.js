@@ -158,8 +158,6 @@ class App extends Component {
   }
 
   tasksByDate = () => {
-    console.log('tasks by date');
-    console.log(this.state.tasks);
     const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
     return tasksByDate;
   }

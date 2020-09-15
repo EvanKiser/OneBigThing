@@ -1,0 +1,8 @@
+.root {
+    minWidth: 275;
+}
+.divStyle {
+    paddingTop: '20px';
+    display: 'flex';
+    justifyContent: 'center';
+}

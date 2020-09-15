@@ -1,35 +1,37 @@
-import React, { useState } from 'react';
-import { makeStyles} from '@material-ui/core/styles';
+import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import TaskItem from './TaskItem';
-//import Task from '../Models/Task';
+import '../css/taskList.css';
 
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    divStyle: {
-        paddingTop: '20px',
-        display: 'flex',
-        justifyContent: 'center',
-    },
-});
+export default class TaskList extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            tasks: props.tasks,
+        };
+    }
 
-export default function TaskList(props) {
-  console.log(props.tasks);
-  const classes = useStyles();
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            this.setState( (state, props) => ({
+                tasks: props.tasks
+            }));
+        }
+    }
 
-  return (
-    <div className={classes.divStyle}>
-        <Grid container justify="space-evenly">
-            <Grid item xs={9}>
-                <Grid container alignItems="center" justify="space-evenly" spacing={4}>
-                    {props.tasks.map( (task, index) => 
-                        <TaskItem key={index} task={task} />
-                    )}
+    render() {
+        return (
+            <div className="divStyle">
+                <Grid container justify="space-evenly">
+                    <Grid item xs={9}>
+                        <Grid container alignItems="center" justify="space-evenly" spacing={4}>
+                            {this.state.tasks.map( (task, index) => 
+                                <TaskItem key={index} task={task} />
+                            )}
+                        </Grid>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Grid>
-    </div>
-  );
+            </div>
+        );
+    }
 }

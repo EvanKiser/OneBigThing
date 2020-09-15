@@ -39,7 +39,7 @@ class DateComponent extends Component {
 
   changeDate = (newDate) => {
     this.setState({ calendarDate: newDate });
-    this.props.callbackToApp(this.state.calendarDate);
+    this.props.callbackToApp(newDate);
   }
 
   render() {
