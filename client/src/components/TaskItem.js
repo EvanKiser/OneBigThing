@@ -5,7 +5,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography, Grid, Paper } from '@material-ui/core/';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles({
     root: {
@@ -30,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 export default function TaskItem(props) {
-    const [task]= useState(props.task);
+    const [task] = useState(props.task);
     const classes = useStyles();
 
   return (
@@ -38,18 +37,16 @@ export default function TaskItem(props) {
         <Paper>
             <Card className={classes.root}>
                 <CardContent>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant="h2" component="h2">
                     {task.taskTitle}
                     </Typography>
-                    < AccountBalanceWalletIcon/>
-                    <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                    <Typography variant="h5" component="h5">
+                    {task.userName}
                     </Typography>
+                    <img src={task.userImage} alt={task.userName} />
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small">Delete</Button>
                 </CardActions>
             </Card>
         </Paper>

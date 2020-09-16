@@ -130,6 +130,7 @@ class App extends Component {
       completed: false,
       date: new Date(),
       user: this.state.user.googleId,
+      userName: this.state.user.name,
       userImage: this.state.user.image,
     })
     .then(response => {
@@ -138,6 +139,8 @@ class App extends Component {
         completed: response.data.completed,
         date: new Date(response.data.date),
         user: response.data.user,
+        userName: this.state.user.name,
+        userImage: response.data.image,
       });
     })
     .catch( error => { console.log(error) })

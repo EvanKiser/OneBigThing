@@ -20,6 +20,7 @@ router.get('/allTasks/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    console.log(req.body);
     await Task.create(req.body)
     .then(task => {    
         res.status(201).json(task);
