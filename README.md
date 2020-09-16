@@ -9,6 +9,6 @@
 - Facebook Login
 - Twitter Login
 - X button for log in pop up
-- Name on top
 - log out
 - Delete Task
+- Task Item UI
