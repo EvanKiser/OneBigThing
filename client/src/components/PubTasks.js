@@ -9,7 +9,7 @@ import SignIn from './SignIn';
 import axios from 'axios';
 
 class App extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       date: new Date(),
@@ -96,7 +96,7 @@ class App extends Component {
       firstName: user.firstName,
       displayName: user.name,
       email: user.email,
-      image: user.image
+      image: user.image,
     })
     .then(response => {
       this.setState({ user: {
@@ -125,13 +125,12 @@ class App extends Component {
   }
 
   postTask = async (taskTitle) => {
-    console.log(this.state.user);
     await axios.post('http://localhost:5000/task/', {
       taskTitle: taskTitle,
       completed: false,
       date: new Date(),
       user: this.state.user.googleId,
-      image: this.state.user.image
+      userImage: this.state.user.image,
     })
     .then(response => {
       this.state.tasks.push({
@@ -143,7 +142,6 @@ class App extends Component {
     })
     .catch( error => { console.log(error) })
   }
-
 
   toggleTaskPop = () => {
     this.setState({
