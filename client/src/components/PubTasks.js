@@ -65,7 +65,7 @@ class App extends Component {
   }
 
   checkUserInDB = (user) => {
-    axios.get('http://localhost:5000/auth/google/', {
+    axios.get('/auth/google/', {
       params: {
         googleId: user.googleId
       }
@@ -90,7 +90,7 @@ class App extends Component {
   }
   
   createUser = (user) => {
-    axios.post('http://localhost:5000/auth/google/', {
+    axios.post('/auth/google/', {
       googleId: user.googleId,
       lastName: user.lastName,
       firstName: user.firstName,
@@ -111,7 +111,7 @@ class App extends Component {
   }
 
   getAllTasks = async () => {
-    await axios.get('http://localhost:5000/task/AllTasks/')
+    await axios.get('/task/AllTasks/')
     .then(response => {
       let tasks = response.data;
       tasks.forEach(t => t.date = new Date(t.date))
@@ -125,7 +125,7 @@ class App extends Component {
   }
 
   postTask = async (taskTitle) => {
-    await axios.post('http://localhost:5000/task/', {
+    await axios.post('/task/', {
       taskTitle: taskTitle,
       completed: false,
       date: new Date(),
@@ -159,7 +159,7 @@ class App extends Component {
   }
 
   tasksByDate = () => {
-    const tasksByDate = this.state.tasks.filter(t => t.date === this.state.date);
+    const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
     return tasksByDate;
   }
 

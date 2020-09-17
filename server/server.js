@@ -23,7 +23,6 @@ if (process.env.NODE_ENV === 'development') {
 // Cors
 app.use(cors())
 
-app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/task', require('./routes/tasks'))
 
