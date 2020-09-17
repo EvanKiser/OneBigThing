@@ -9,6 +9,7 @@ router.get('/allTasks/', async (req, res) => {
     .exec()
     .then(tasks => {
         if (tasks) {
+            console.log(tasks)
             res.status(200).json(tasks)
         } else {
             res.send("Not Tasks Found");
