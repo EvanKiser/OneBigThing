@@ -9,6 +9,7 @@
   },
   "proxy": "http://localhost:5000",
   "description": "React client",
+  "engines": "12.x",
   "main": "index.js",
   "author": "Evan Kiser",
   "license": "MIT",
