@@ -14,7 +14,6 @@ export default function SignIn(props) {
   const classes = useStyles();
 
   const logInWithGoogle = (response) => {
-    console.log('here')
     props.toggle();
     const user = {
       googleId: response.profileObj.googleId,
