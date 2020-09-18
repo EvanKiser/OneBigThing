@@ -6,7 +6,7 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "start-local": "cross-env NODE_ENV=production node server",
-    "start": "node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "server": "cross-env NODE_ENV=development nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
