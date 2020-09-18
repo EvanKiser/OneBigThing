@@ -5,10 +5,12 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "cross-env NODE_ENV=production node server",
+    "start-local": "cross-env NODE_ENV=production node server",
+    "start": "node server.js",
     "server": "cross-env NODE_ENV=development nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" 
   },
   "author": "Evan Kiser",
   "license": "MIT",
