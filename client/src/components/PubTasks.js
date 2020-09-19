@@ -158,8 +158,26 @@ class App extends Component {
     })
   }
 
+  chunk = (str, n) => {
+    var ret = [];
+    var i;
+    var len;
+
+    for(i = 0, len = str.length; i < len; i += n) {
+       ret.push(str.substr(i, n))
+    }
+    return ret
+  }
+
   tasksByDate = () => {
     const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
+    tasksByDate.map(t => {
+      for (var i=0; i < t.taskTitle.length / 8; i++) {
+        if (t.taskTitle.substring(10,11) !== 'º') {
+          t.taskTitle = this.chunk(t.taskTitle, 10).join('º')
+        }
+      }
+    })
     return tasksByDate;
   }
 
@@ -182,10 +200,11 @@ class App extends Component {
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate()}/>
-          <Footer title="Footer" description="Something here to give the footer a purpose!"/>
+          <Footer title="" description="Thanks For Coming"/>
       </React.Fragment>
     );
   }
 }
 
 export default App;
+

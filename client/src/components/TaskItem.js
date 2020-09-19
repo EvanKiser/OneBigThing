@@ -37,13 +37,25 @@ export default function TaskItem(props) {
         <Paper>
             <Card className={classes.root}>
                 <CardContent>
-                    <Typography variant="h2" component="h2">
-                    {task.taskTitle}
-                    </Typography>
-                    <Typography variant="h5" component="h5">
-                    {task.userName}
-                    </Typography>
-                    <img src={task.userImage} alt={task.userName} />
+                <Grid container alignItems="center" justify="space-evenly" spacing={4}>
+                    <Grid item>
+                        <Typography variant="h2" component="h2">
+                        {task.taskTitle.split("º").map((i,key) => {
+                            return <div key={key}>{i}</div>;
+                        })}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid container alignItems="center" justify="space-evenly" spacing={0}>
+                    <Grid item>
+                        <Typography variant="h5" component="h5">
+                        <i>{task.userName}</i>
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <img src={task.userImage} alt={task.userName} />
+                    </Grid>
+                </Grid>
                 </CardContent>
                 <CardActions>
                     <Button size="small">Delete</Button>
