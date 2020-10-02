@@ -7,13 +7,33 @@ Radical transparency for productivity reliability.
 
 # Clone, make changes, and tell me what I can do better
 ### Install dependencies
-npm run client-install || yarn run client-install
+```
+npm run client-install
+npm install
+```
+or
+```
+yarn run client-install
+yarn install
+```
 
 ### Run in development
-npm run dev || yarn run dev
+```
+npm run dev
+```
+or
+```
+yarn run dev
+```
 
 ### Run in production
-npm start || yarn start
+```
+npm start
+```
+or
+```
+yarn start
+```
 
 # Environment Vairables
 - PORT - port to run locally
