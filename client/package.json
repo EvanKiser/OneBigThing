@@ -7,7 +7,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000",
   "description": "React client",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "main": "index.js",
   "author": "Evan Kiser",
   "license": "MIT",

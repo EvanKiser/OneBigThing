@@ -8,11 +8,10 @@ import { Link } from '@material-ui/core/';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
+      {'Follow me on '}
+      <Link color="inherit" href="https://twitter.com/evanjkiser">
+        Twitter @EvanJKiser
+      </Link>
       {'.'}
     </Typography>
   );

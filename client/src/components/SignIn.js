@@ -34,9 +34,8 @@ export default function SignIn(props) {
               clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
               buttonText="Login With Google"
               onSuccess={logInWithGoogle}
-              onFailure={console.log('onFailure')}
-              cookiePolicy={'single_host_origin'}
-            />,
+              onFailure={console.log('Google Auth Failed')}
+            />
           </div>
       </div>
     </div>
