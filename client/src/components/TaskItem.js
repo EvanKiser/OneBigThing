@@ -58,7 +58,7 @@ export default function TaskItem(props) {
                 </Grid>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Delete</Button>
+                    <Button variant="outlined" color="primary" size="small">Delete</Button>
                 </CardActions>
             </Card>
         </Paper>
