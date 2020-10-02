@@ -50,9 +50,9 @@ yarn start
 - App intialized with [Create-React-App](https://github.com/facebookincubator/create-react-app)
 - App deployed on [Heroku](https://www.heroku.com)
 
-## ToDo
+## Work Items
 - X button for log in pop up
 - Delete Task
-- Button color for log in and new task
 - Fix calendar bug
 - Sizing of task description
+- Refresh when new task created

@@ -64,7 +64,7 @@ export default class Header extends Component {
             <React.Fragment>
             <Container maxWidth="lg">
             <Toolbar className="toolbar">
-            <Button size="small" onClick={this.toggleSignInPop}>
+            <Button variant="contained" size="small" color="primary" onClick={this.toggleSignInPop}>
                 {this.isLoggedIn()}
             </Button>
             <Typography
@@ -77,7 +77,7 @@ export default class Header extends Component {
             >
                 {this.titleLettering()}
             </Typography>
-            {this.newTaskButton() ? <Button size="small" onClick={this.toggleTaskPop}> New Task </Button> : null }
+            {this.newTaskButton() ? <Button variant="contained" size="small" color="primary" onClick={this.toggleTaskPop}> New Task </Button> : null }
             </Toolbar>
             
         </Container>
