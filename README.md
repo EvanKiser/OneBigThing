@@ -53,6 +53,5 @@ yarn start
 ## Work Items
 - X button for log in pop up
 - Delete Task
-- Fix calendar bug
 - Sizing of task description
 - Refresh when new task created

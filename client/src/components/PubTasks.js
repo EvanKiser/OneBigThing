@@ -170,7 +170,17 @@ class App extends Component {
   }
 
   tasksByDate = () => {
-    const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
+    const tasksByDate = this.state.tasks.filter(task => {
+      if (task.date.getMonth() === this.state.date.getMonth()) {
+        if (task.date.getDate() === this.state.date.getDate()) {
+          if (task.date.getFullYear() === this.state.date.getFullYear()) {
+            return true
+          }
+        }
+      }
+      return false
+    });
+
     tasksByDate.map(t => {
       for (var i=0; i < t.taskTitle.length / 8; i++) {
         if (t.taskTitle.substring(10,11) !== 'º') {
