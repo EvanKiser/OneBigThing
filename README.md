@@ -51,7 +51,6 @@ yarn start
 - App deployed on [Heroku](https://www.heroku.com)
 
 ## Work Items
-- X button for log in pop up
 - Delete Task
 - Sizing of task description
 - Refresh when new task created
