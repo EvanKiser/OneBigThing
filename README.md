@@ -55,3 +55,4 @@ yarn start
 - Delete Task
 - Sizing of task description
 - Refresh when new task created
+- Calendar transition is ugly

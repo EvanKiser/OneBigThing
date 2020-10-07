@@ -17,6 +17,10 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none',
+  },
 });
 
 export default theme;
