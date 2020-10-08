@@ -174,16 +174,11 @@ class App extends Component {
   }
 
   tasksByDate = () => {
-    const tasksByDate = this.state.tasks.filter(task => {
-      if (task.date.getMonth() === this.state.date.getMonth()) {
-        if (task.date.getDate() === this.state.date.getDate()) {
-          if (task.date.getFullYear() === this.state.date.getFullYear()) {
-            return true
-          }
-        }
-      }
-      return false
-    });
+    const tasksByDate = this.state.tasks.filter(task => 
+      (task.date.getMonth() === this.state.date.getMonth()) &&
+      (task.date.getDate() === this.state.date.getDate()) &&
+      (task.date.getFullYear() === this.state.date.getFullYear()) 
+    );
 
     tasksByDate.map(t => {
       for (var i=0; i < t.taskTitle.length / 8; i++) {
@@ -191,6 +186,7 @@ class App extends Component {
           t.taskTitle = this.chunk(t.taskTitle, 10).join('º')
         }
       }
+      return true;
     })
     return tasksByDate;
   }
