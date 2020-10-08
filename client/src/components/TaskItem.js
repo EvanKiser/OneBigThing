@@ -1,67 +1,61 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography, Grid, Paper } from '@material-ui/core/';
+import '../css/taskItem.css'
 
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    divStyle: {
-        paddingTop: '20px',
-        display: 'flex',
-        justifyContent: 'center',
-    },
-});
+export default class TaskItem extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            task: props.task,
+            currentUser: props.currentUser
+        };
+    }
 
-export default function TaskItem(props) {
-    const [task] = useState(props.task);
-    const classes = useStyles();
-
-  return (
-    <Grid item >
-        <Paper>
-            <Card className={classes.root}>
-                <CardContent>
-                <Grid container alignItems="center" justify="space-evenly" spacing={4}>
-                    <Grid item>
-                        <Typography variant="h2" component="h2">
-                        {task.taskTitle.split("º").map((i,key) => {
-                            return <div key={key}>{i}</div>;
-                        })}
-                        </Typography>
-                    </Grid>
-                </Grid>
-                <Grid container alignItems="center" justify="space-evenly" spacing={0}>
-                    <Grid item>
-                        <Typography variant="h5" component="h5">
-                        <i>{task.userName}</i>
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <img src={task.userImage} alt={task.userName} />
-                    </Grid>
-                </Grid>
-                </CardContent>
-                <CardActions>
-                    <Button variant="outlined" color="primary" size="small">Delete</Button>
-                </CardActions>
-            </Card>
-        </Paper>
-    </Grid>
-  );
-}
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            this.setState( (state, props) => ({
+                task: props.task,
+                currentUser: props.currentUser
+            }));
+        }
+    }
+    render() {
+        return (
+            <Grid item >
+                <Paper>
+                    <Card className="root">
+                        <CardContent>
+                        <Grid container alignItems="center" justify="space-evenly" spacing={4}>
+                            <Grid item>
+                                <Typography variant="h2" component="h2">
+                                {this.state.task.taskTitle.split("º").map((i,key) => {
+                                    return <div key={key}>{i}</div>;
+                                })}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container alignItems="center" justify="space-evenly" spacing={0}>
+                            <Grid item>
+                                <Typography variant="h5" component="h5">
+                                <i>{this.state.task.userName}</i>
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <img src={this.state.task.userImage} alt={this.state.task.userName} />
+                            </Grid>
+                        </Grid>
+                        </CardContent>
+                        <CardActions>
+                            {this.state.currentUser === this.state.task.user ? <Button variant="outlined" color="primary" size="small">Delete</Button> : null}
+                        </CardActions>
+                    </Card>
+                </Paper>
+            </Grid>
+            );
+        }
+    }

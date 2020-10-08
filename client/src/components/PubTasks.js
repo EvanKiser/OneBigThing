@@ -62,6 +62,7 @@ class App extends Component {
         image: "",
       }
     });
+    this.getAllTasks();
   }
 
   checkUserInDB = (user) => {
@@ -83,6 +84,7 @@ class App extends Component {
           }});
         }
       }
+      this.getAllTasks();
     })
     .catch(err => {
       console.log(err)
@@ -104,8 +106,9 @@ class App extends Component {
         firstName: response.data.firstName,
         name: response.data.displayName,
         image: response.data.image,
-      }
-    });
+        }
+      });
+      this.getAllTasks();
     })
     .catch( error => { console.log(error) })
   }
@@ -210,7 +213,7 @@ class App extends Component {
           }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
-          <TaskList tasks={this.tasksByDate()}/>
+          <TaskList tasks={this.tasksByDate()} currentUser={this.state.user.googleId}/>
           <Footer title="" description="Thanks For Coming"/>
       </React.Fragment>
     );
