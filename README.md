@@ -53,5 +53,4 @@ yarn start
 ## Work Items
 - Delete Task
 - Sizing of task description
-- Refresh when new task created
 - Calendar transition is ugly

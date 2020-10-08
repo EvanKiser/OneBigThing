@@ -142,6 +142,7 @@ class App extends Component {
         userName: this.state.user.name,
         userImage: response.data.image,
       });
+      this.getAllTasks();
     })
     .catch( error => { console.log(error) })
   }
