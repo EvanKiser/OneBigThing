@@ -1,11 +1,10 @@
 import React, { Component, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Typography, Grid, Paper } from '@material-ui/core/';
-import '../css/taskItem.css'
+//import '../css/taskItem.css'
 
 export default class TaskItem extends Component {
     constructor(props) {
@@ -28,7 +27,7 @@ export default class TaskItem extends Component {
         return (
             <Grid item >
                 <Paper>
-                    <Card className="root">
+                    <Card>
                         <CardContent>
                         <Grid container alignItems="center" justify="space-evenly" spacing={4}>
                             <Grid item>
