@@ -53,6 +53,10 @@ class App extends Component {
     }
   }
 
+  callbackToDeleteTask = (id) => {
+    this.deleteTaskById(id);
+  }
+
   callbackForLogOut = () => {
     this.setState({
       user: {
@@ -73,7 +77,7 @@ class App extends Component {
     })
     .then(response => {
       if (response.status === 200) {
-        if (response.data === 'User Not Found') {
+        if (response.data === 'User Not Found!') {
            this.createUser(user)
         } else {
           this.setState({ user: {
@@ -150,6 +154,20 @@ class App extends Component {
     .catch( error => { console.log(error) })
   }
 
+  deleteTaskById = async (id) => {
+    console.log(`id: ${id}`)
+    await axios.delete('/task/', { 
+      params: {
+        id: id
+      }
+    })
+    .then(response => {
+      console.log(response)
+      this.getAllTasks()
+    })
+    .catch(error => {console.log(error)})
+  }
+
   toggleTaskPop = () => {
     this.setState({
       taskPopUpOpen: !this.state.taskPopUpOpen
@@ -209,7 +227,7 @@ class App extends Component {
           }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
-          <TaskList tasks={this.tasksByDate()} currentUser={this.state.user.googleId}/>
+          <TaskList tasks={this.tasksByDate()} currentUser={this.state.user.googleId} callbackToDeleteTaskById={this.callbackToDeleteTask}/>
           <Footer title="" description="Thanks For Coming"/>
       </React.Fragment>
     );

@@ -23,6 +23,10 @@ export default class TaskItem extends Component {
             }));
         }
     }
+
+    deleteTask = () => {
+        this.props.deleteTaskCallback(this.state.task._id);
+    }
     render() {
         return (
             <Grid item >
@@ -50,7 +54,9 @@ export default class TaskItem extends Component {
                         </Grid>
                         </CardContent>
                         <CardActions>
-                            {this.state.currentUser === this.state.task.user ? <Button variant="outlined" color="primary" size="small">Delete</Button> : null}
+                            {this.state.currentUser === this.state.task.user ? 
+                            <Button variant="outlined" color="primary" size="small" onClick={this.deleteTask}>Delete</Button> : 
+                            null}
                         </CardActions>
                     </Card>
                 </Paper>
