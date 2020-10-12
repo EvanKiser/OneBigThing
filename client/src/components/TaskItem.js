@@ -29,16 +29,14 @@ export default class TaskItem extends Component {
     }
     render() {
         return (
-            <Grid item >
+            <Grid item>
                 <Paper>
                     <Card>
                         <CardContent>
                         <Grid container alignItems="center" justify="space-evenly" spacing={4}>
                             <Grid item>
                                 <Typography variant="h2" component="h2">
-                                {this.state.task.taskTitle.split("º").map((i,key) => {
-                                    return <div key={key}>{i}</div>;
-                                })}
+                                {this.state.task.taskTitle}
                                 </Typography>
                             </Grid>
                         </Grid>

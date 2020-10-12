@@ -3,6 +3,7 @@ import '../css/createTaskPopUp.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,6 +43,7 @@ export default function CreateTaskPopUp(props) {
 
   return (
     <div className="modal">
+      <ClickAwayListener onClickAway={props.toggle}>
     <div className="modal_content">
       <span className="close" onClick={handleClick}>
         &times;
@@ -68,6 +70,7 @@ export default function CreateTaskPopUp(props) {
           </Button>
       </form>
     </div>
+    </ClickAwayListener>
   </div>
   );
  }

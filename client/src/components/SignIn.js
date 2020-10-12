@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { makeStyles } from '@material-ui/core/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,6 +33,7 @@ export default function SignIn(props) {
 
   return (
     <div className="modal">
+      <ClickAwayListener onClickAway={closeClicked}>
       <div className="modal_content">
         <span className="close" onClick={closeClicked}>
           &times;
@@ -45,6 +47,7 @@ export default function SignIn(props) {
           />
         </div>
       </div>
+    </ClickAwayListener>
     </div>
   );
 }

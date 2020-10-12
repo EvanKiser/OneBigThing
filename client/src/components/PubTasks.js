@@ -197,15 +197,6 @@ class App extends Component {
       (task.date.getDate() === this.state.date.getDate()) &&
       (task.date.getFullYear() === this.state.date.getFullYear()) 
     );
-
-    tasksByDate.map(t => {
-      for (var i=0; i < t.taskTitle.length / 8; i++) {
-        if (t.taskTitle.substring(10,11) !== 'º') {
-          t.taskTitle = this.chunk(t.taskTitle, 10).join('º')
-        }
-      }
-      return true;
-    })
     return tasksByDate;
   }
 
