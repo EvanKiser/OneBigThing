@@ -219,7 +219,7 @@ class App extends Component {
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
           <TaskList tasks={this.tasksByDate()} currentUser={this.state.user.googleId} callbackToDeleteTaskById={this.callbackToDeleteTask}/>
-          <Footer title="" description="Thanks For Coming"/>
+          <Footer />
       </React.Fragment>
     );
   }

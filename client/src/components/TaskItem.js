@@ -4,8 +4,7 @@ import Box from '@material-ui/core/Box';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { Typography, Grid, Paper } from '@material-ui/core/';
-//import '../css/taskItem.css'
+import { Typography, Grid } from '@material-ui/core/';
 
 export default class TaskItem extends Component {
     constructor(props) {
