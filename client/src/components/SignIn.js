@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { makeStyles } from '@material-ui/core/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,18 +27,27 @@ export default function SignIn(props) {
     props.userInDB(user);
   }
 
+  const closeClicked = () => {
+    props.toggle()
+  }
+
   return (
     <div className="modal">
+      <ClickAwayListener onClickAway={closeClicked}>
       <div className="modal_content">
-          <div className={classes.paper}>
-            <GoogleLogin
-              clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
-              buttonText="Login With Google"
-              onSuccess={logInWithGoogle}
-              onFailure={console.log('Google Auth Failed')}
-            />
-          </div>
+        <span className="close" onClick={closeClicked}>
+          &times;
+        </span>    
+        <div className={classes.paper}>
+          <GoogleLogin
+            clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
+            buttonText="Login With Google"
+            onSuccess={logInWithGoogle}
+            onFailure={console.log('Google Auth Failed')}
+          />
+        </div>
       </div>
+    </ClickAwayListener>
     </div>
   );
 }

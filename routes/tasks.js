@@ -1,9 +1,8 @@
+const { startOfYear } = require('date-fns')
 const express = require('express')
 const Task = require('../models/Task')
 const router = express.Router()
 
-// @desc Auth with Google
-// @route GET /auth/google
 router.get('/allTasks/', async (req, res) => {
     const tasks = await Task.find()
     .exec()
@@ -15,7 +14,7 @@ router.get('/allTasks/', async (req, res) => {
         }
     })
     .catch(err => {
-        console.log(err)
+        res.send(err)
     })
 })
 
@@ -27,6 +26,24 @@ router.post('/', async (req, res) => {
     .catch(err => {
         res.status(400).json({ error: err })
     })
+})
+
+router.delete('/', async (req, res) => {
+    const id = req.query.id;
+    console.log('her')
+    console.log(id)
+    try {
+        let task = await Task.findById(id).lean()
+        if(!task) {
+            res.send('Task Id not found')
+        } else {
+            await Task.deleteOne({ _id: id })
+            res.json({ success: true })
+        }
+        //res.redirect('/')
+    } catch(err) {
+        res.json({ success: false })
+    }
 })
 
 module.exports = router

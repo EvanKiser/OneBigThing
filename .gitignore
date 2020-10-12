@@ -2,7 +2,9 @@
 
 # dependencies
 client/node_modules/
+client/yarn.lock
 /node_modules
+/yarn.lock
 /.pnp
 .pnp.js
 

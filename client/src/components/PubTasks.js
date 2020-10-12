@@ -53,6 +53,10 @@ class App extends Component {
     }
   }
 
+  callbackToDeleteTask = (id) => {
+    this.deleteTaskById(id);
+  }
+
   callbackForLogOut = () => {
     this.setState({
       user: {
@@ -62,6 +66,7 @@ class App extends Component {
         image: "",
       }
     });
+    this.getAllTasks();
   }
 
   checkUserInDB = (user) => {
@@ -72,7 +77,7 @@ class App extends Component {
     })
     .then(response => {
       if (response.status === 200) {
-        if (response.data === 'User Not Found') {
+        if (response.data === 'User Not Found!') {
            this.createUser(user)
         } else {
           this.setState({ user: {
@@ -83,6 +88,7 @@ class App extends Component {
           }});
         }
       }
+      this.getAllTasks();
     })
     .catch(err => {
       console.log(err)
@@ -104,8 +110,9 @@ class App extends Component {
         firstName: response.data.firstName,
         name: response.data.displayName,
         image: response.data.image,
-      }
-    });
+        }
+      });
+      this.getAllTasks();
     })
     .catch( error => { console.log(error) })
   }
@@ -142,8 +149,23 @@ class App extends Component {
         userName: this.state.user.name,
         userImage: response.data.image,
       });
+      this.getAllTasks();
     })
     .catch( error => { console.log(error) })
+  }
+
+  deleteTaskById = async (id) => {
+    console.log(`id: ${id}`)
+    await axios.delete('/task/', { 
+      params: {
+        id: id
+      }
+    })
+    .then(response => {
+      console.log(response)
+      this.getAllTasks()
+    })
+    .catch(error => {console.log(error)})
   }
 
   toggleTaskPop = () => {
@@ -170,14 +192,11 @@ class App extends Component {
   }
 
   tasksByDate = () => {
-    const tasksByDate = this.state.tasks.filter(t => t.date.getDay() === this.state.date.getDay());
-    tasksByDate.map(t => {
-      for (var i=0; i < t.taskTitle.length / 8; i++) {
-        if (t.taskTitle.substring(10,11) !== 'º') {
-          t.taskTitle = this.chunk(t.taskTitle, 10).join('º')
-        }
-      }
-    })
+    const tasksByDate = this.state.tasks.filter(task => 
+      (task.date.getMonth() === this.state.date.getMonth()) &&
+      (task.date.getDate() === this.state.date.getDate()) &&
+      (task.date.getFullYear() === this.state.date.getFullYear()) 
+    );
     return tasksByDate;
   }
 
@@ -199,8 +218,8 @@ class App extends Component {
           }
           {this.state.signInPopUpOpen ? <SignIn userInDB={this.checkUserInDB} toggle={this.toggleSignInPop} /> : null }
           <DateComponent callbackToApp={this.callbackForDate}/>
-          <TaskList tasks={this.tasksByDate()}/>
-          <Footer title="" description="Thanks For Coming"/>
+          <TaskList tasks={this.tasksByDate()} currentUser={this.state.user.googleId} callbackToDeleteTaskById={this.callbackToDeleteTask}/>
+          <Footer />
       </React.Fragment>
     );
   }
