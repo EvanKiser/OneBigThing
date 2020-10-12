@@ -51,6 +51,4 @@ yarn start
 - App deployed on [Heroku](https://www.heroku.com)
 
 ## Work Items
-- Delete Task
-- Sizing of task description
 - Calendar transition is ugly
