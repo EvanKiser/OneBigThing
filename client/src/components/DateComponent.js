@@ -53,6 +53,7 @@ class DateComponent extends Component {
                   date={this.state.calendarDate}
                   onChange={(newDate) => this.changeDate(newDate)}
                   minDate={new Date(2020, 9, 1, 0, 0 ,0, 0)}
+                  maxDate={new Date()}
                 />
               </MuiPickersUtilsProvider>
             </Grid>

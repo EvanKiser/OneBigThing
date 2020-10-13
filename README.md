@@ -13,7 +13,7 @@ npm install
 ```
 or
 ```
-yarn run client-install
+yarn client-install
 yarn install
 ```
 
@@ -23,7 +23,7 @@ npm run dev
 ```
 or
 ```
-yarn run dev
+yarn dev
 ```
 
 ### Run in production
