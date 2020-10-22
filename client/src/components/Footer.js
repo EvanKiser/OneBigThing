@@ -1,8 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/';
 import { Container } from '@material-ui/core/';
-import { Typography } from '@material-ui/core/';
 import { Grid } from '@material-ui/core/';
 import { Link } from '@material-ui/core/';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -11,20 +9,20 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Copyright() {
   return (
-    <Grid container justify="center" alignItems="center" spacing={1}>
+    <Grid container justify="flex-end" alignItems="flex-end" spacing={1}>
     <Grid item>
       <Link href="https://twitter.com/evanjkiser">
-        <TwitterIcon fontSize="large"/>
+        <TwitterIcon fontSize="medium"/>
       </Link>
     </Grid>
     <Grid item>
       <Link href="https://www.linkedin.com/in/evankiser/">
-        <LinkedInIcon fontSize="large"/>
+        <LinkedInIcon fontSize="medium"/>
       </Link>
     </Grid>
     <Grid item>
       <Link href="https://github.com/EvanKiser/PubTasks">
-        <GitHubIcon fontSize="large"/>
+        <GitHubIcon fontSize="medium"/>
       </Link>
     </Grid>
     </Grid>

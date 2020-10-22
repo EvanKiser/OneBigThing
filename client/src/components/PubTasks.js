@@ -155,14 +155,12 @@ class App extends Component {
   }
 
   deleteTaskById = async (id) => {
-    console.log(`id: ${id}`)
     await axios.delete('/task/', { 
       params: {
         id: id
       }
     })
     .then(response => {
-      console.log(response)
       this.getAllTasks()
     })
     .catch(error => {console.log(error)})
@@ -205,7 +203,7 @@ class App extends Component {
       <React.Fragment>
           <CssBaseline />
           <Header 
-            title={this.state.user.firstName} 
+            title={this.state.user.firstName}
             callbackToTaskPopUp={this.callbackForTaskPopUp} 
             callbackToSignInPopUp={this.callbackForSignInPopUp} 
             logout={this.callbackForLogOut}
@@ -226,4 +224,3 @@ class App extends Component {
 }
 
 export default App;
-

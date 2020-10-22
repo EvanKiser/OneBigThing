@@ -37,19 +37,15 @@ export default class Header extends Component {
 
     isLoggedIn = () => {
         if (this.state.title === "") {
-            return "Log In";
+            return "Log In To Share Your OBT For Today";
         }
         else {
-            return "Log out";
+            return "Log Out";
         }
     }
 
     titleLettering = () => {
-        if (this.state.title !== "") {
-            return `${this.state.title}'s PubTasks`;
-        } else {
-            return "PubTasks";
-        }
+        return "One Big Thing";
     }
 
     newTaskButton = () => {
@@ -77,7 +73,7 @@ export default class Header extends Component {
             >
                 {this.titleLettering()}
             </Typography>
-            {this.newTaskButton() ? <Button variant="contained" size="small" color="primary" onClick={this.toggleTaskPop}> New Task </Button> : null }
+            {this.newTaskButton() ? <Button variant="contained" size="small" color="primary" onClick={this.toggleTaskPop}> Share Your OBT for Today </Button> : null }
             </Toolbar>
             
         </Container>

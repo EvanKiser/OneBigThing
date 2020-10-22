@@ -41,7 +41,7 @@ class DateComponent extends Component {
     this.setState({ calendarDate: newDate });
     this.props.callbackToApp(newDate);
   }
-
+  
   render() {
     return (
       <Grid container justify="space-evenly">
@@ -52,7 +52,7 @@ class DateComponent extends Component {
                 <Calendar
                   date={this.state.calendarDate}
                   onChange={(newDate) => this.changeDate(newDate)}
-                  minDate={new Date(2020, 9, 1, 0, 0 ,0, 0)}
+                  minDate={new Date(2020, 9, 21, 0, 0 ,0, 0)}
                   maxDate={new Date()}
                 />
               </MuiPickersUtilsProvider>

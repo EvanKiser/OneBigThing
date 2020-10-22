@@ -49,7 +49,7 @@ export default function CreateTaskPopUp(props) {
         &times;
       </span>
       <form className={classes.form}>
-          What are you trying to complete today?
+          What is the highest impact thing you can do today?
           <TextField
             variant="outlined"
             margin="normal"
