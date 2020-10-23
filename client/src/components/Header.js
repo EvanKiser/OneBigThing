@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Container } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 import '../css/header.css';
 
 export default class Header extends Component {
@@ -58,26 +58,39 @@ export default class Header extends Component {
     render() {
         return (
             <React.Fragment>
-            <Container maxWidth="lg">
-            <Toolbar className="toolbar">
-            <Button variant="contained" size="small" color="primary" onClick={this.toggleSignInPop}>
-                {this.isLoggedIn()}
-            </Button>
-            <Typography
-                component="h2"
-                variant="h5"
-                color="inherit"
-                align="center"
-                noWrap
-                className="toolbarTitle"
-            >
-                {this.titleLettering()}
-            </Typography>
-            {this.newTaskButton() ? <Button variant="contained" size="small" color="primary" onClick={this.toggleTaskPop}> Share Your OBT for Today </Button> : null }
-            </Toolbar>
-            
-        </Container>
-        </React.Fragment>
+                <Container maxWidth="lg">
+                    <Toolbar className="toolbar" xs={12}>
+                        <Grid container>
+                            <Grid item xs={4}>
+                                <Button variant="contained" size="small" color="primary" onClick={this.toggleSignInPop}>
+                                    {this.isLoggedIn()}
+                                </Button>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography
+                                    component="h2"
+                                    variant="h5"
+                                    color="inherit"
+                                    align="center"
+                                    noWrap
+                                    className="toolbarTitle"
+                                >
+                                    {this.titleLettering()}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Grid container justify="flex-end" align-items="flex-end">
+                                    <Grid item>
+                                        {this.newTaskButton() ? <Button variant="contained" size="small" color="primary" onClick={this.toggleTaskPop}>
+                                                                    Share Your OBT for Today
+                                                                </Button> : null }
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Toolbar>
+                </Container>
+            </React.Fragment>
         );
     }
 }
