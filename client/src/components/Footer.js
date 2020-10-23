@@ -12,17 +12,17 @@ function Copyright() {
     <Grid container justify="flex-end" alignItems="flex-end" spacing={1}>
     <Grid item>
       <Link href="https://twitter.com/evanjkiser">
-        <TwitterIcon fontSize="medium"/>
+        <TwitterIcon fontSize="small"/>
       </Link>
     </Grid>
     <Grid item>
       <Link href="https://www.linkedin.com/in/evankiser/">
-        <LinkedInIcon fontSize="medium"/>
+        <LinkedInIcon fontSize="small"/>
       </Link>
     </Grid>
     <Grid item>
       <Link href="https://github.com/EvanKiser/PubTasks">
-        <GitHubIcon fontSize="medium"/>
+        <GitHubIcon fontSize="small"/>
       </Link>
     </Grid>
     </Grid>

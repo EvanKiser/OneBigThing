@@ -72,7 +72,6 @@ export default class Header extends Component {
                                     variant="h5"
                                     color="inherit"
                                     align="center"
-                                    noWrap
                                     className="toolbarTitle"
                                 >
                                     {this.titleLettering()}
