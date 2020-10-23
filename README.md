@@ -2,7 +2,7 @@
   <img src="./PubTasks.png" alt="PubTasks Logo"/>
 </p>
 
-# [PubTasks](https://www.pubtasks.com)
+# [OneBigThing](https://www.onebigthing.io)
 Radical transparency for productivity reliability.
 
 # Clone, make changes, and tell me what I can do better
