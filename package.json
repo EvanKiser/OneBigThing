@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "PubTasks Back-end",
+  "description": "OneBigThing Back-end",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
