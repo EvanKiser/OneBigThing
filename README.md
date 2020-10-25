@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./PubTasks.png" alt="PubTasks Logo"/>
+  <img src="./OneBigThing.png" alt="OneBigThing Logo"/>
 </p>
 
 # [PubTasks](https://www.pubtasks.com)
