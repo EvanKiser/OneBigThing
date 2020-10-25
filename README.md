@@ -2,8 +2,8 @@
   <img src="./OneBigThing.png" alt="OneBigThing Logo"/>
 </p>
 
-# [PubTasks](https://www.pubtasks.com)
-Radical transparency for productivity reliability.
+# [OneBigThing](https://www.onebigthing.io)
+What is the OneBigThing you are going to do today that will make today a success?
 
 # Clone, make changes, and tell me what I can do better
 ### Install dependencies
