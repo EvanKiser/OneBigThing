@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
 
+  // Load config
+  //dotenv.config( { path: '../../config/config.env' } )
+  
   const logInWithGoogle = (response) => {
     props.toggle();
     const user = {
@@ -28,7 +31,8 @@ export default function SignIn(props) {
   }
 
   const closeClicked = () => {
-    props.toggle()
+    console.log(process.env);
+    props.toggle();
   }
 
   return (
