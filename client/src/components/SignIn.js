@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
-
-  // Load config
-  //dotenv.config( { path: '../../config/config.env' } )
   
   const logInWithGoogle = (response) => {
     props.toggle();
@@ -31,7 +28,6 @@ export default function SignIn(props) {
   }
 
   const closeClicked = () => {
-    console.log(process.env);
     props.toggle();
   }
 
@@ -44,7 +40,7 @@ export default function SignIn(props) {
         </span>    
         <div className={classes.paper}>
           <GoogleLogin
-            clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
+            clientId={process.env.GOOGLE_API_ID}
             buttonText="Login With Google"
             onSuccess={logInWithGoogle}
             onFailure={console.log('Google Auth Failed')}
