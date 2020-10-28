@@ -36,10 +36,11 @@ yarn start
 ```
 
 # Environment Vairables
+<b><i>ADD A FILE NAMED CONFIG.ENV TO THE CONFIG FOLDER</i></b>
 - PORT - port to run locally
 - MONGO_URI - self explanatory
 - NODE_ENV - node environment - production or development
-- Add your googleOAuth clientId in Sign.js components.
+- GOOGLE_API_ID - googleOAuth client Id
 
 ## Tools Used
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas#:~:text=MongoDB%20Atlas%20is%20the%20global,AWS%2C%20Azure%2C%20or%20GCP.)
