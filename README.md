@@ -36,7 +36,7 @@ yarn start
 ```
 
 # Environment Vairables
-<b><i>ADD A FILE NAMED CONFIG.ENV TO THE CONFIG FOLDER</i></b>
+<b><i>ADD A FILE NAMED CONFIG.ENV TO THE CONFIG FOLDER WITH THE VARIABLES BELOW</i></b>
 - PORT - port to run locally
 - MONGO_URI - self explanatory
 - NODE_ENV - node environment - production or development
