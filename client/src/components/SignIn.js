@@ -40,7 +40,7 @@ export default function SignIn(props) {
         </span>    
         <div className={classes.paper}>
           <GoogleLogin
-            clientId={process.env.GOOGLE_API_ID}
+            clientId="215450700739-qn5dmq35b0v1emum5hetqgrvau4sr3cl.apps.googleusercontent.com"
             buttonText="Login With Google"
             onSuccess={logInWithGoogle}
             onFailure={console.log('Google Auth Failed')}
