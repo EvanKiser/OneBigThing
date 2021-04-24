@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
+    "server-install": "npm install",
     "start-local": "cross-env NODE_ENV=production node server",
     "start": "node server.js",
     "server": "cross-env NODE_ENV=development nodemon server",
